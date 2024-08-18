@@ -11,6 +11,10 @@ from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileT
 
 import config as c
 
+ALPHA_VANTAGE_API_KEY = os.getenv('ALPHA_VANTAGE_API_KEY')
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
 
 # Fetch stock data
 def fetch_stock_data(symbol, use_local_data=False):
@@ -20,12 +24,12 @@ def fetch_stock_data(symbol, use_local_data=False):
             return data
         else:
             print(f"Local data not found for {symbol}")
-            ts = TimeSeries(key=c.ALPHA_VANTAGE_API_KEY, output_format='pandas')
+            ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
             data, meta_data = ts.get_daily(symbol=symbol, outputsize='compact')
             # save to CSV
             data.to_csv(f"data/{symbol}.csv")
     else:
-        ts = TimeSeries(key=c.ALPHA_VANTAGE_API_KEY, output_format='pandas')
+        ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
         data, meta_data = ts.get_daily(symbol=symbol, outputsize='compact')
         # save to CSV
         data.to_csv(f"data/{symbol}.csv")
@@ -115,8 +119,8 @@ def calculate_yield(purchase_price, current_price):
 # Send email with stock updates
 def send_email_with_attachment():
     message = Mail(
-        from_email=c.EMAIL_ADDRESS,
-        to_emails=c.RECIPIENT_EMAIL,
+        from_email=EMAIL_ADDRESS,
+        to_emails=RECIPIENT_EMAIL,
         subject='Daily Stock Market Update',
         plain_text_content='Please find the daily stock market update attached.'
     )
@@ -135,7 +139,7 @@ def send_email_with_attachment():
             message.add_attachment(attachment)
 
     try:
-        sg = SendGridAPIClient(c.SENDGRID_API_KEY)
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
         response = sg.send(message)
         print(f"Email sent with status code: {response.status_code}")
     except Exception as e:
