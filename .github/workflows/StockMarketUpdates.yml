@@ -3,6 +3,8 @@ name: Run Python Script
 on:
   schedule:
     - cron: '0 0 * * *'  # This runs the script every day at midnight UTC
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
 
 jobs:
   run-script:
