@@ -1,3 +1,4 @@
+import os
 
 STOCKS = [
     '^N225',    # Nikkei 225 Index
@@ -15,3 +16,7 @@ STOCKS_ETF = {
 }
 ANNOTATIONS = {'AAPL': 'Bought on 2023-01-01', 'MSFT': 'Bought on 2023-03-15'}
 
+ALPHA_VANTAGE_API_KEY = os.getenv('ALPHA_VANTAGE_API_KEY')
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')

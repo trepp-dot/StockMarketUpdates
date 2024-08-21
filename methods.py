@@ -11,11 +11,6 @@ from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileT
 
 import config as c
 
-ALPHA_VANTAGE_API_KEY = os.getenv('ALPHA_VANTAGE_API_KEY')
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
-EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
-
 
 class StockProcess:
     def __init__(self):
@@ -26,6 +21,7 @@ class StockProcess:
 
 # Fetch stock data
     def date_graph_process(self):
+        print(f"Fetching stock data and generating graphs for {self.symbols_dict}")
         for symbol, desc in self.symbols_dict.items():
             self.symbol = symbol
             self.data = self.fetch_stock_data(use_local_data=False)
@@ -38,13 +34,14 @@ class StockProcess:
                 return data
             else:
                 print(f"Local data not found for {self.symbol}")
-                ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
+                ts = TimeSeries(key=c.ALPHA_VANTAGE_API_KEY, output_format='pandas')
                 data, meta_data = ts.get_daily(symbol=self.symbol, outputsize='compact')
                 # save to CSV
                 data.to_csv(f"data/{self.symbol}.csv")
         else:
-            ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
+            ts = TimeSeries(key=c.ALPHA_VANTAGE_API_KEY, output_format='pandas')
             data, meta_data = ts.get_daily(symbol=self.symbol, outputsize='compact')
+            print(f"Data fetched for {self.symbol} has {data.shape[0]} rows")
         return data
 
     # Generate graph for each stock
@@ -93,6 +90,7 @@ class StockProcess:
         plt.tight_layout(rect=[0.0, 0.03, 1.0, 0.95])
         os.makedirs(os.path.dirname(self.output_path.format(self.symbol)), exist_ok=True)
         plt.savefig(self.output_path.format(self.symbol))
+        print(f"Graph generated for {self.symbol}")
         # plt.savefig(f"graph/{self.symbol}.png")
         plt.close()
 
@@ -128,9 +126,10 @@ class StockProcess:
 
     # Send email with stock updates
     def send_email_with_attachment(self):
+        print(f"Sending email with stock updates, the recipient len is {len(c.RECIPIENT_EMAIL)}, the email address len is {len(c.EMAIL_ADDRESS)}")
         message = Mail(
-            from_email=EMAIL_ADDRESS,
-            to_emails=RECIPIENT_EMAIL,
+            from_email=c.EMAIL_ADDRESS,
+            to_emails=c.RECIPIENT_EMAIL,
             subject='Daily Stock Market Update',
             plain_text_content='Please find the daily stock market update attached.'
         )
@@ -149,7 +148,7 @@ class StockProcess:
                 message.add_attachment(attachment)
 
         try:
-            sg = SendGridAPIClient(SENDGRID_API_KEY)
+            sg = SendGridAPIClient(c.SENDGRID_API_KEY)
             response = sg.send(message)
             print(f"Email sent with status code: {response.status_code}")
         except Exception as e:
