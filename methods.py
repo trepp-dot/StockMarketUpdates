@@ -28,7 +28,7 @@ class StockProcess:
     def date_graph_process(self):
         for symbol, desc in self.symbols_dict.items():
             self.symbol = symbol
-            self.data = self.fetch_stock_data(use_local_data=True)
+            self.data = self.fetch_stock_data(use_local_data=False)
             self.generate_graph(desc)
 
     def fetch_stock_data(self, use_local_data=False):
