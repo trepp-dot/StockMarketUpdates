@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4eabf850-6362-4672-b4a5-84530aceedcb" name="Changes" comment="Add keys from GitHub secret">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/methods.py" afterDir="false" />
-    </list>
+    <list default="true" id="4eabf850-6362-4672-b4a5-84530aceedcb" name="Changes" comment=" Change methods to class&#10; save PNG's to GitHub Artifact while in process" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="5163db06-5306-4e0e-8349-df650d6446b6" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -78,13 +76,30 @@
       <option name="project" value="LOCAL" />
       <updated>1724015580149</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=" Change methods to class&#10; save PNG's to GitHub Artifact while in process">
+      <option name="closed" value="true" />
+      <created>1724263552608</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724263552609</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" Change methods to class&#10; save PNG's to GitHub Artifact while in process">
+      <option name="closed" value="true" />
+      <created>1724263559144</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724263559144</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="pip freeze &gt; requirements.txt" />
     <MESSAGE value="Add keys from GitHub secret" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add keys from GitHub secret" />
+    <MESSAGE value=" Change methods to class&#10; save PNG's to GitHub Artifact while in process" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Change methods to class&#10; save PNG's to GitHub Artifact while in process" />
   </component>
 </project>
