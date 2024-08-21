@@ -18,8 +18,8 @@ EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
 
 
 class StockProcess:
-    def __init__(self, symbols_dict, desc):
-        self.symbols_dict = symbols_dict
+    def __init__(self):
+        self.symbols_dict = c.STOCKS_ETF
         self.data = pd.DataFrame()
         self.symbol = None
         self.output_path = os.path.join('output', "{}.png")
